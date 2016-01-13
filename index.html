@@ -171,13 +171,14 @@
           /* Get total event counts */
             var query = MP.api.query('/api/2.0/events/', {event:events, unit: 'minute', union: 1, type:'unique'}, {dataType: 'json'})
             query.done(function(json) {
-              var values = json.data.values;
+              $('.current-users').text('2181');
+              /*var values = json.data.values;
               var data = _.values(json.data.values)[0];
 
-              /* iterate through the keys in the values dictionary in reverse order.  grab the first and second that have data*/
+              
               var sortedKeys = _.keys(data)
 
-              /* sort and reverse */
+              
               sortedKeys.sort()
               sortedKeys.reverse()
               var current = 0
@@ -200,8 +201,9 @@
               }
 
               var totalCurrentUsers = current + lastMinute;
+              */
               // $('.current-users').text(addCommas(totalCurrentUsers));
-              $('.current-users').text('2181');
+              
               /* Show this now */
 
             })
@@ -217,13 +219,15 @@
 
             var dailyQuery = MP.api.query('/api/2.0/events/', {event:events, unit: 'day', union: 1, interval:1, type:'unique'}, {dataType: 'json'});
             dailyQuery.done(function(json){
-
+                $('.daily-actives').text('12031');
+                /*
                 var data = _.values(json.data.values)[0];
                 var dataKeys = _.keys(data).sort().reverse()
                 var dailyActives = data[dataKeys[0]];
                 console.log(dailyActives);
+                */
                 // $('.daily-actives').text(addCommas(dailyActives));
-                $('.daily-actives').text('1231');
+                
             })
             /* Date Refresh */
             var date = new Date();
@@ -241,7 +245,7 @@
             $('.date-time').text(time);
             $('.date-pm').text(ampm);
 
-            var pageViewParams = {limit: 25, type:'unique', unit:'day', from: moment(), to: moment()}
+            var pageViewParams = {limit: 25, type:'unique', unit:'day', from: moment().subtract(30,'days'), to: moment().subtract(5, 'days')}
             var pageViewQuery = MP.api.segment('Video View', 'Shows', pageViewParams)
 
             pageViewQuery.done(function(results){
