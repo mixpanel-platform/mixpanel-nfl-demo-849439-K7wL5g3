@@ -246,7 +246,7 @@
             $('.date-pm').text(ampm);
 
             var pageViewParams = {limit: 25, type:'unique', unit:'day', from: moment().subtract(30,'days'), to: moment().subtract(5, 'days')}
-            var pageViewQuery = MP.api.segment('Video View', 'Shows', pageViewParams)
+            var pageViewQuery = MP.api.segment('Video Viewed', 'Shows', pageViewParams)
 
             pageViewQuery.done(function(results){
                 var data = {}
